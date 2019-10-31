@@ -56,3 +56,9 @@ def teachers(id):
   #returns the welcome message
   data = teachersRes.getSingleData('id',id)
   return json.dumps(data)
+
+@app.route('/teachersByDep/<string:dep>')
+def teachersByDep(dep):
+  #returns the welcome message
+  data = teachersRes.getFilteredData('department',dep)
+  return json.dumps(data)

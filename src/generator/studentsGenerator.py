@@ -55,4 +55,3 @@ def generateStudents(dbCon,dim):
         }
 
         dbCon["Students"].insert_one(currentStudent)
-

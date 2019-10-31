@@ -20,3 +20,14 @@ class Resource:
         
         del dat[0]["_id"]
         return dat[0]
+
+    def getFilteredData(self,propName,propValue):
+        dat = list(self.data.find({propName:propValue}))
+        
+        if (len(dat) == 0):
+            return []
+        
+        for elem in dat:
+            del elem["_id"]
+
+        return dat
