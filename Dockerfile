@@ -12,6 +12,6 @@ RUN /bin/bash -c "source activate app"
 
 EXPOSE 5000
 
-ENTRYPOINT ["flask"]
+ENTRYPOINT ["python"]
 
-CMD ["run"]
+CMD ["app.py"]
