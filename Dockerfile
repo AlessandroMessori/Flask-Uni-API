@@ -1,8 +1,17 @@
-# Instructions copied from - https://hub.docker.com/_/python/
-FROM python:3-onbuild
+FROM continuumio/miniconda:latest
 
-# tell the port number the container should expose
+WORKDIR .
+
+COPY . ./
+
+
+RUN conda env create --name app --file=environment.yml
+ENV PATH /opt/conda/envs/app/bin:$PATH
+RUN /bin/bash -c "source activate app"
+
+
 EXPOSE 5000
 
-# run the command
-CMD ["python", "./app.py"]
+ENTRYPOINT ["flask"]
+
+CMD ["run"]

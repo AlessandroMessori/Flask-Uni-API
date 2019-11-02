@@ -12,7 +12,7 @@ t_data = json.loads(t_data.content)
 gpas = [int(stud["gpa"]) for stud in s_data]
 deps = [dep["department"] for dep in t_data]
 
-f, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
+f, (ax1, ax2) = plt.subplots(1, 2)
 ax1.hist(gpas)
 ax1.set_title("Students GPA Distribution")
 ax2.hist(deps)
