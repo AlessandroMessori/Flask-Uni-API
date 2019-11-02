@@ -1,8 +1,8 @@
 FROM continuumio/miniconda:latest
 
-WORKDIR .
+WORKDIR /app
 
-COPY . ./
+COPY . /app
 
 
 RUN conda env create --name app --file=environment.yml
@@ -14,4 +14,4 @@ EXPOSE 5000
 
 ENTRYPOINT ["python"]
 
-CMD ["app.py"]
+CMD ["/app/app.py"]
