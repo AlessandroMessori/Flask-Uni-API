@@ -31,3 +31,7 @@ class DataHelper:
             del elem["_id"]
 
         return dat
+
+    def deleteElement(self,propName,propValue):
+        self.data.remove({propName:propValue})
+        

@@ -19,3 +19,13 @@ class Student(Resource):
     def get(self,id):
         data = self.helper.getSingleData('mat',id)
         return jsonify(data)
+
+    def post(self):
+        return jsonify({'message':'not implemented yet'})
+
+    def put(self):
+        return jsonify({'message':'not implemented yet'})
+
+    def delete(self,id):
+        self.helper.deleteElement("mat",id)
+        return jsonify({'message':'deleted student with mat '+ str(id)})
