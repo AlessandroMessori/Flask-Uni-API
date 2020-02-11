@@ -36,8 +36,14 @@ class Student(Resource):
             print(e)
             return jsonify({'message':'error'})
     
-    def put(self):
-        return jsonify({'message':'not implemented yet'})
+    def put(self,id):
+        data = parser.parse_args()
+        data['mat'] = id
+        try:   
+            self.helper.updateElement(data,'mat',id)
+            return jsonify({'message':'OK'})
+        except(e):
+            return jsonify({'message':'error'})
 
     def delete(self,id):
         try:

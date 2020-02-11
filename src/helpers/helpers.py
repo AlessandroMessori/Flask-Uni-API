@@ -38,8 +38,14 @@ class DataHelper:
         except():
             raise Exception(e)
 
-    def updateElement(self,data):
-        pass
+    def updateElement(self,data,propName,propValue):
+        query = dict()
+        query[propName] = propValue
+
+        try:
+            self.data.update(query,data)
+        except:
+            raise Exception(e)
 
     def deleteElement(self,propName,propValue):
         try:

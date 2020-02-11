@@ -34,8 +34,15 @@ class Course(Resource):
             print(e)
             return jsonify({'message':'error'})
         
-    def put(self):
-        return jsonify({'message':'not implemented yet'})
+    def put(self,id):
+        data = parser.parse_args()
+        data['id'] = id
+        try:   
+            self.helper.updateElement(data,'id',id)
+            return jsonify({'message':'OK'})
+        except(e):
+            print(e)
+            return jsonify({'message':'error'})
 
     def delete(self,id):
         try:   
