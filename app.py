@@ -6,11 +6,13 @@ from src.helpers.helpers import DataHelper
 from src.resources.teachers import AllTeachers,Teacher,TeachersByDep
 from src.resources.students import AllStudents,Student
 from src.resources.courses import AllCourses,Course
+from src.resources.auth import Register,Login
 
 #client = pymongo.MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'],27017)
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client["flask-uni-db"]
 
+usersHelper = DataHelper("Users",db)
 studentsHelper = DataHelper("Students",db)
 teachersHelper = DataHelper("Teachers",db)
 coursesHelper = DataHelper("Courses",db)
@@ -24,6 +26,10 @@ def home():
   return "<h2>Welcome to Flask Uni API</h2>"
 
 
+api.add_resource(Register, '/register',
+                 resource_class_kwargs={'helper': usersHelper})
+api.add_resource(Login, '/login',
+                 resource_class_kwargs={'helper': usersHelper})
 api.add_resource(AllTeachers, '/teachers',
                  resource_class_kwargs={'helper': teachersHelper})
 api.add_resource(Teacher, '/teachers/<int:id>',
