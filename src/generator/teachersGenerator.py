@@ -2,7 +2,7 @@ import numpy as np
 import names
 import random 
 import pymongo
-from ..resources.resource import Resource
+from ..helpers.helpers import DataHelper
 
 
 departments = ['mat','ele','inf','fis','bio']

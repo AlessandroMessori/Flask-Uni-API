@@ -2,7 +2,7 @@ import numpy as np
 import names
 import random 
 import pymongo
-from ..resources.resource import Resource
+from ..helpers.helpers import DataHelper
 
 def getMat(dbCon):
  prev = dbCon["Students"].find().sort('mat',-1).limit(1)
@@ -38,7 +38,7 @@ def getExams(courses):
 
 def generateStudents(dbCon,dim):
 
-    courses = list(Resource("Courses",dbCon).getData())
+    courses = list(DataHelper("Courses",dbCon).getData())
 
     for i in range(0,dim):
         
