@@ -1,4 +1,4 @@
-class Resource:
+class DataHelper:
 
     def __init__(self,name,con):
         self.name = name

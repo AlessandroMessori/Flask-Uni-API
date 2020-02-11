@@ -1,69 +1,45 @@
 import os
-from flask import Flask, escape, request
+from flask import Flask, escape, request,jsonify
+from flask_restful import Api
 import pymongo
-import json
-from src.resources.resource import Resource
+from src.helpers.helpers import DataHelper
+from src.resources.teachers import AllTeachers,Teacher,TeachersByDep
+from src.resources.students import AllStudents,Student
+from src.resources.courses import AllCourses,Course
 
 #client = pymongo.MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'],27017)
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client["flask-uni-db"]
 
-studentsRes = Resource("Students",db)
-teachersRes = Resource("Teachers",db)
-coursesRes = Resource("Courses",db)
+studentsHelper = DataHelper("Students",db)
+teachersHelper = DataHelper("Teachers",db)
+coursesHelper = DataHelper("Courses",db)
 
 app = Flask(__name__)
+api = Api(app)
 
 @app.route('/')
 def home():
   #returns the welcome message
-  return "<h1> Welcome to the Flask Uni API </h1>"
+  return "<h2>Welcome to Flask Uni API</h2>"
 
 
-@app.route('/students')
-def allStudents():
-  #returns the welcome message
-  data  = studentsRes.getData()
-  return json.dumps(data)
+api.add_resource(AllTeachers, '/teachers',
+                 resource_class_kwargs={'helper': teachersHelper})
+api.add_resource(Teacher, '/teachers/<int:id>',
+                 resource_class_kwargs={'helper': teachersHelper})
+api.add_resource(TeachersByDep, '/teachersByDep/<string:dep>',
+                 resource_class_kwargs={'helper': teachersHelper})
+api.add_resource(AllStudents, '/students',
+                 resource_class_kwargs={'helper': studentsHelper})
+api.add_resource(Student, '/students/<int:id>',
+                 resource_class_kwargs={'helper': studentsHelper})
+api.add_resource(AllCourses, '/courses',
+                 resource_class_kwargs={'helper': coursesHelper})
+api.add_resource(Course, '/courses/<int:id>',
+                 resource_class_kwargs={'helper': coursesHelper})
 
-@app.route('/students/<int:id>')
-def students(id):
-  #returns the welcome message
-  data = studentsRes.getSingleData("mat",id)
-  return json.dumps(data)
-
-
-@app.route('/courses')
-def allCourses():
-  #returns the welcome message
-  data = coursesRes.getData()
-  data = sorted(data, key=lambda k: k['id'])
-  return json.dumps(data)
-
-@app.route('/courses/<int:id>')
-def courses(id):
-  #returns the welcome message
-  data = coursesRes.getSingleData('id',id)
-  return json.dumps(data)
-
-@app.route('/teachers')
-def allTeachers():
-  #returns the welcome message
-  data = teachersRes.getData()
-  data = sorted(data, key=lambda k: k['id'])
-  return json.dumps(data)
-
-@app.route('/teachers/<int:id>')
-def teachers(id):
-  #returns the welcome message
-  data = teachersRes.getSingleData('id',id)
-  return json.dumps(data)
-
-@app.route('/teachersByDep/<string:dep>')
-def teachersByDep(dep):
-  #returns the welcome message
-  data = teachersRes.getFilteredData('department',dep)
-  return json.dumps(data)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
+
