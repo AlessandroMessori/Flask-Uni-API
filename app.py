@@ -4,8 +4,8 @@ import pymongo
 import json
 from src.resources.resource import Resource
 
-client = pymongo.MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'],27017)
-#client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+#client = pymongo.MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'],27017)
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client["flask-uni-db"]
 
 studentsRes = Resource("Students",db)
