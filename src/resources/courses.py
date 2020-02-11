@@ -1,5 +1,6 @@
 from flask import jsonify
 from flask_restful import Resource,reqparse
+from flask_jwt_extended import jwt_required
 
 parser = reqparse.RequestParser()
 parser.add_argument('category',required=True)
@@ -24,6 +25,7 @@ class Course(Resource):
         data = self.helper.getSingleData('id',id)
         return jsonify(data)
 
+    @jwt_required
     def post(self,id):
         data = parser.parse_args()
         data['id'] = id
@@ -33,7 +35,8 @@ class Course(Resource):
         except(e):
             print(e)
             return jsonify({'message':'error'})
-        
+    
+    @jwt_required
     def put(self,id):
         data = parser.parse_args()
         data['id'] = id
@@ -44,6 +47,7 @@ class Course(Resource):
             print(e)
             return jsonify({'message':'error'})
 
+    @jwt_required
     def delete(self,id):
         try:   
             self.helper.deleteElement("id",id)

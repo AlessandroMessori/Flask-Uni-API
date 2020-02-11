@@ -1,6 +1,7 @@
 import os
 from flask import Flask, escape, request,jsonify
 from flask_restful import Api
+from flask_jwt_extended import JWTManager
 import pymongo
 from src.helpers.helpers import DataHelper
 from src.resources.teachers import AllTeachers,Teacher,TeachersByDep
@@ -19,6 +20,9 @@ coursesHelper = DataHelper("Courses",db)
 
 app = Flask(__name__)
 api = Api(app)
+
+app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
+jwt = JWTManager(app)
 
 @app.route('/')
 def home():

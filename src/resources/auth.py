@@ -1,5 +1,6 @@
 from flask import jsonify
 from flask_restful import Resource,reqparse
+from flask_jwt_extended import create_access_token
 from passlib.hash import pbkdf2_sha256 as sha256
 
 parser = reqparse.RequestParser()
@@ -22,7 +23,7 @@ class Register(Resource):
 
         try:
             self.helper.addElement(data)
-            return {'message':'OK'}
+            return {'token':create_access_token(identity=user)}
         except:
             return {'message':'error'}
 
@@ -40,7 +41,7 @@ class Login(Resource):
         if (len(user) == 0):
             return {'message':'this user does not exists'}
         elif sha256.verify(data['password'],user[0]['password']):
-            return {'message':'OK'}
+            return {'token':create_access_token(identity=user[0])}
         else:
             return {'message':'wrong password'}
 

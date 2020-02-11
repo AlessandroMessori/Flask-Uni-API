@@ -1,5 +1,6 @@
 from flask import jsonify
 from flask_restful import Resource,reqparse
+from flask_jwt_extended import jwt_required
 
 parser = reqparse.RequestParser()
 parser.add_argument('name',required=True)
@@ -25,6 +26,7 @@ class Student(Resource):
         data = self.helper.getSingleData('mat',id)
         return jsonify(data)
 
+    @jwt_required
     def post(self,id):
         data = parser.parse_args()
         data['mat'] = id
@@ -36,6 +38,7 @@ class Student(Resource):
             print(e)
             return jsonify({'message':'error'})
     
+    @jwt_required
     def put(self,id):
         data = parser.parse_args()
         data['mat'] = id
@@ -45,6 +48,7 @@ class Student(Resource):
         except(e):
             return jsonify({'message':'error'})
 
+    @jwt_required
     def delete(self,id):
         try:
             self.helper.deleteElement("mat",id)
