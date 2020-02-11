@@ -1,5 +1,10 @@
 from flask import jsonify
-from flask_restful import Resource
+from flask_restful import Resource,reqparse
+
+parser = reqparse.RequestParser()
+parser.add_argument('name',required=True)
+parser.add_argument('surname',required=True)
+parser.add_argument('gender',required=True)
 
 class AllStudents(Resource):
 
@@ -20,12 +25,23 @@ class Student(Resource):
         data = self.helper.getSingleData('mat',id)
         return jsonify(data)
 
-    def post(self):
-        return jsonify({'message':'not implemented yet'})
-
+    def post(self,id):
+        data = parser.parse_args()
+        data['mat'] = id
+        data['gpa'] = 0
+        try:   
+            self.helper.addElement(data)
+            return jsonify({'message':'OK'})
+        except(e):
+            print(e)
+            return jsonify({'message':'error'})
+    
     def put(self):
         return jsonify({'message':'not implemented yet'})
 
     def delete(self,id):
-        self.helper.deleteElement("mat",id)
-        return jsonify({'message':'deleted student with mat '+ str(id)})
+        try:
+            self.helper.deleteElement("mat",id)
+            return jsonify({'message':'deleted student with mat '+ str(id)})
+        except:
+            return jsonify({'message':'error'})

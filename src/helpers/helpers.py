@@ -32,6 +32,18 @@ class DataHelper:
 
         return dat
 
+    def addElement(self,data):
+        try:
+            self.data.insert(data)
+        except():
+            raise Exception(e)
+
+    def updateElement(self,data):
+        pass
+
     def deleteElement(self,propName,propValue):
-        self.data.remove({propName:propValue})
+        try:
+            self.data.remove({propName:propValue})
+        except:
+            raise Exception()
         
