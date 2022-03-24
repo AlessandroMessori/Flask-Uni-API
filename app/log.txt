@@ -1,0 +1,940 @@
+Attaching to flask, mongodb, webserver
+mongodb    | 2022-03-24T22:16:39.921+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=5930ad953289
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] db version v4.0.8
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] git version: 9b00696ed75f65e1ebc8d635593bed79b290cfbb
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] modules: none
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] build environment:
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten]     distmod: ubuntu1604
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten]     distarch: x86_64
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+mongodb    | 2022-03-24T22:16:39.924+0000 I CONTROL  [initandlisten] options: { net: { bindIpAll: true }, security: { authorization: "enabled" } }
+mongodb    | 2022-03-24T22:16:39.924+0000 I STORAGE  [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+mongodb    | 2022-03-24T22:16:39.924+0000 I STORAGE  [initandlisten] 
+mongodb    | 2022-03-24T22:16:39.924+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+mongodb    | 2022-03-24T22:16:39.924+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+mongodb    | 2022-03-24T22:16:39.924+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1416M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+mongodb    | 2022-03-24T22:16:40.514+0000 I STORAGE  [initandlisten] WiredTiger message [1648160200:514731][1:0x7f6e46c59a40], txn-recover: Main recovery loop: starting at 12/6016 to 13/256
+mongodb    | 2022-03-24T22:16:40.676+0000 I STORAGE  [initandlisten] WiredTiger message [1648160200:676358][1:0x7f6e46c59a40], txn-recover: Recovering log 12 through 13
+mongodb    | 2022-03-24T22:16:40.755+0000 I STORAGE  [initandlisten] WiredTiger message [1648160200:755912][1:0x7f6e46c59a40], txn-recover: Recovering log 13 through 13
+mongodb    | 2022-03-24T22:16:40.819+0000 I STORAGE  [initandlisten] WiredTiger message [1648160200:819059][1:0x7f6e46c59a40], txn-recover: Set global recovery timestamp: 0
+mongodb    | 2022-03-24T22:16:40.848+0000 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+mongodb    | 2022-03-24T22:16:40.859+0000 I CONTROL  [initandlisten] 
+mongodb    | 2022-03-24T22:16:40.859+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+mongodb    | 2022-03-24T22:16:40.859+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+mongodb    | 2022-03-24T22:16:40.859+0000 I CONTROL  [initandlisten] 
+mongodb    | 2022-03-24T22:16:40.874+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+mongodb    | 2022-03-24T22:16:40.875+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+flask      | [2022-03-24 22:16:41 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:41 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:41 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:41 +0000] [8] [INFO] Booting worker with pid: 8
+flask      | [2022-03-24 22:16:41 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:41 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:41 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:41 +0000] [8] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:41 +0000] [8] [INFO] Worker exiting (pid: 8)
+flask      | [2022-03-24 22:16:41 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:41 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:41 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:41 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | [2022-03-24 22:16:41 +0000] [1] [WARNING] Worker with pid 9 was terminated due to signal 15
+flask      | [2022-03-24 22:16:41 +0000] [1] [WARNING] Worker with pid 10 was terminated due to signal 15
+flask      | [2022-03-24 22:16:41 +0000] [11] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:41 +0000] [11] [INFO] Worker exiting (pid: 11)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask exited with code 1
+flask      | [2022-03-24 22:16:43 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:43 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:43 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:43 +0000] [8] [INFO] Booting worker with pid: 8
+flask      | [2022-03-24 22:16:43 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:43 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:43 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:44 +0000] [8] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:44 +0000] [8] [INFO] Worker exiting (pid: 8)
+flask      | [2022-03-24 22:16:44 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:44 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:44 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:44 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | [2022-03-24 22:16:44 +0000] [11] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:44 +0000] [11] [INFO] Worker exiting (pid: 11)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask exited with code 1
+flask      | [2022-03-24 22:16:45 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:45 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:45 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:45 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:45 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:45 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:45 +0000] [12] [INFO] Booting worker with pid: 12
+flask      | [2022-03-24 22:16:45 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:45 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:45 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:45 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | [2022-03-24 22:16:45 +0000] [1] [WARNING] Worker with pid 10 was terminated due to signal 15
+flask      | [2022-03-24 22:16:45 +0000] [11] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:45 +0000] [11] [INFO] Worker exiting (pid: 11)
+flask      | [2022-03-24 22:16:45 +0000] [12] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:45 +0000] [12] [INFO] Worker exiting (pid: 12)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask exited with code 1
+flask      | [2022-03-24 22:16:46 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:46 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:46 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:46 +0000] [8] [INFO] Booting worker with pid: 8
+flask      | [2022-03-24 22:16:47 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:47 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:47 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:47 +0000] [8] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:47 +0000] [8] [INFO] Worker exiting (pid: 8)
+flask      | [2022-03-24 22:16:47 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:47 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:47 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:47 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | [2022-03-24 22:16:47 +0000] [11] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:47 +0000] [11] [INFO] Worker exiting (pid: 11)
+flask exited with code 1
+flask      | [2022-03-24 22:16:49 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:49 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:49 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:49 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:49 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:49 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:49 +0000] [12] [INFO] Booting worker with pid: 12
+flask      | [2022-03-24 22:16:49 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:49 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:49 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:49 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask exited with code 1
+flask      | [2022-03-24 22:16:52 +0000] [1] [INFO] Starting gunicorn 20.1.0
+flask      | [2022-03-24 22:16:52 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+flask      | [2022-03-24 22:16:52 +0000] [1] [INFO] Using worker: sync
+flask      | [2022-03-24 22:16:52 +0000] [9] [INFO] Booting worker with pid: 9
+flask      | [2022-03-24 22:16:52 +0000] [10] [INFO] Booting worker with pid: 10
+flask      | [2022-03-24 22:16:52 +0000] [11] [INFO] Booting worker with pid: 11
+flask      | [2022-03-24 22:16:52 +0000] [12] [INFO] Booting worker with pid: 12
+flask      | [2022-03-24 22:16:52 +0000] [9] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:52 +0000] [9] [INFO] Worker exiting (pid: 9)
+flask      | [2022-03-24 22:16:52 +0000] [10] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:52 +0000] [10] [INFO] Worker exiting (pid: 10)
+flask      | [2022-03-24 22:16:52 +0000] [1] [WARNING] Worker with pid 10 was terminated due to signal 15
+flask      | [2022-03-24 22:16:52 +0000] [11] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:52 +0000] [11] [INFO] Worker exiting (pid: 11)
+flask      | [2022-03-24 22:16:52 +0000] [12] [ERROR] Exception in worker process
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+flask      |     worker.init_process()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 134, in init_process
+flask      |     self.load_wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+flask      |     self.wsgi = self.app.wsgi()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 67, in wsgi
+flask      |     self.callable = self.load()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+flask      |     return self.load_wsgiapp()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+flask      |     return util.import_app(self.app_uri)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/util.py", line 359, in import_app
+flask      |     mod = importlib.import_module(module)
+flask      |   File "/usr/local/lib/python3.6/importlib/__init__.py", line 126, in import_module
+flask      |     return _bootstrap._gcd_import(name[level:], package, level)
+flask      |   File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+flask      |   File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+flask      |   File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+flask      |   File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+flask      |   File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+flask      |   File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+flask      |   File "/var/www/wsgi.py", line 1, in <module>
+flask      |     from app import application
+flask      |   File "/var/www/app.py", line 18, in <module>
+flask      |     mongo = pymongo(app)
+flask      | TypeError: 'module' object is not callable
+flask      | [2022-03-24 22:16:52 +0000] [12] [INFO] Worker exiting (pid: 12)
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 209, in run
+flask      |     self.sleep()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 357, in sleep
+flask      |     ready = select.select([self.PIPE[0]], [], [], 1.0)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask      | 
+flask      | During handling of the above exception, another exception occurred:
+flask      | 
+flask      | Traceback (most recent call last):
+flask      |   File "/usr/local/bin/gunicorn", line 10, in <module>
+flask      |     sys.exit(run())
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+flask      |     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 231, in run
+flask      |     super().run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/app/base.py", line 72, in run
+flask      |     Arbiter(self).run()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 229, in run
+flask      |     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 342, in halt
+flask      |     self.stop()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 393, in stop
+flask      |     time.sleep(0.1)
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+flask      |     self.reap_workers()
+flask      |   File "/usr/local/lib/python3.6/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+flask      |     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+flask      | gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+flask exited with code 1
+Gracefully stopping... (press Ctrl+C again to force)

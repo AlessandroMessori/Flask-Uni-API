@@ -33,5 +33,5 @@ It consists of an REST API that exposes fictional university data, alongside the
 
 ## Scripts
  - app.py --> starts up the backend server to serve the requests
- - generate.py --> Generates realistic collections of students and teachers and loads them in the Mong datastore
+ - generate.py --> Generates realistic collections of students and teachers and loads them in the Mongo datastore
  - analyze.py --> Plots the distribution of the student's GPA and of the distribution of teachers by department 
