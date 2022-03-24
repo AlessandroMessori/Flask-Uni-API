@@ -13,6 +13,7 @@ from src.resources.auth import Register,Login
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client["flask-uni-db"]
 
+# Helpers to load the data from the db
 usersHelper = DataHelper("Users",db)
 studentsHelper = DataHelper("Students",db)
 teachersHelper = DataHelper("Teachers",db)
@@ -21,14 +22,15 @@ coursesHelper = DataHelper("Courses",db)
 app = Flask(__name__)
 api = Api(app)
 
+# Sets up JWT authentication
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
 jwt = JWTManager(app)
 
 @app.route('/')
 def home():
-  #returns the welcome message
   return "<h2>Welcome to Flask Uni API</h2>"
 
+# exposes all the API Endpoints
 
 api.add_resource(Register, '/register',
                  resource_class_kwargs={'helper': usersHelper})

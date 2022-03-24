@@ -4,7 +4,6 @@ import random
 import pymongo
 from ..helpers.helpers import DataHelper
 
-
 departments = ['mat','ele','inf','fis','bio']
 
 def getId(dbCon):
@@ -15,6 +14,7 @@ def getId(dbCon):
  
  return int(prev[0]['id'])+1
 
+# generates the teachers data assigning a random department and generating random the personal data with a random name generator
 def generateTeachers(dbCon,dim):
 
     for i in range(0,dim):

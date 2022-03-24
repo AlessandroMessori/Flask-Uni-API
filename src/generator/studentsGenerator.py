@@ -23,6 +23,7 @@ def getGrade():
     gpa = round(np.random.normal(24,2),2)
     return checkLimit(gpa)
 
+# Generates the exam grades following a gaussian distribution
 def getExams(courses):
     
     predictedGpa = getGrade()
@@ -36,6 +37,7 @@ def getExams(courses):
     gpa = checkLimit(gpa)
     return (courses, gpa)
 
+# Generates the student fictional data using statistical distributions and random generators for the name and surname
 def generateStudents(dbCon,dim):
 
     courses = list(DataHelper("Courses",dbCon).getData())

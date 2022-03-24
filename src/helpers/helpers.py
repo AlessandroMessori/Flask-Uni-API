@@ -1,3 +1,4 @@
+# helper class to execute CRUD operations on the Database
 class DataHelper:
 
     def __init__(self,name,con):
@@ -35,8 +36,8 @@ class DataHelper:
     def addElement(self,data):
         try:
             self.data.insert(data)
-        except():
-            raise Exception(e)
+        except:
+            raise Exception()
 
     def updateElement(self,data,propName,propValue):
         query = dict()
@@ -45,7 +46,7 @@ class DataHelper:
         try:
             self.data.update(query,data)
         except:
-            raise Exception(e)
+            raise Exception()
 
     def deleteElement(self,propName,propValue):
         try:
