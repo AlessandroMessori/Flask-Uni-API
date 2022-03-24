@@ -2,5 +2,4 @@
 .vscode/*
 .idea*
 *.pycù
-docker-compose.yml
 *.json
