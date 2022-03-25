@@ -5,6 +5,13 @@
 This is a side project that I made during my universty years in order to get familiar with a set of skills and technologies I was feeling was missing from my toolbox at the time. 
 It consists of an REST API that exposes fictional university data, alongside the code to generate and plot such data.
 
+## Quickstart
+
+   To start the app listening on port 5000
+
+    docker-compose up  
+      
+
 ## Technologies Used
  - Python
  - Flask

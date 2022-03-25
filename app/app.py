@@ -10,17 +10,17 @@ from src.resources.courses import AllCourses,Course
 from src.resources.auth import Register,Login
 
 
-app = Flask(__name__)
-api = Api(app)
+application = Flask(__name__)
+api = Api(application)
 
-app.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
+application.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
 
-mongo = PyMongo(app)
+mongo = PyMongo(application)
 db = mongo.db["flask-uni-db"]
 
 # Sets up JWT authentication
-app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
-jwt = JWTManager(app)
+application.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
+jwt = JWTManager(application)
 
 
 # Helpers to load the data from the db
@@ -29,7 +29,7 @@ studentsHelper = DataHelper("Students",db)
 teachersHelper = DataHelper("Teachers",db)
 coursesHelper = DataHelper("Courses",db)
 
-@app.route('/')
+@application.route('/')
 def home():
   return "<h2>Welcome to Flask Uni API</h2>"
 
@@ -56,6 +56,6 @@ api.add_resource(Course, '/courses/<int:id>',
 
 
 if __name__ == "__main__":
-    ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG", True)
-    ENVIRONMENT_PORT = os.environ.get("APP_PORT", 5000)
-    app.run(host='0.0.0.0', port=ENVIRONMENT_PORT, debug=ENVIRONMENT_DEBUG)
+    ENVIRONMENT_DEBUG = os.environ.get("application_DEBUG", True)
+    ENVIRONMENT_PORT = os.environ.get("application_PORT", 5000)
+    application.run(host='0.0.0.0', port=ENVIRONMENT_PORT, debug=ENVIRONMENT_DEBUG)
